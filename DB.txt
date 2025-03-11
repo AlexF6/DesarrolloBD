@@ -72,3 +72,8 @@ CREATE TABLE Inscripciones1 (
 GO
 ALTER TABLE Profesores
 ADD ApellidoProfesor VARCHAR(30);
+
+INSERT INTO Estudiantes (nombreEstudiante) VALUES('Rodolfito'),('jh'),('Pipe bueno'),('tal cual') --Insertar
+UPDATE Estudiantes SET nombreEstudiante ='ChaBED' where id_estudiante= 1; --Actualizar
+Delete FROM Estudiantes WHERE id_estudiante = 2; -- Borrar
+SELECT *FROM Estudiantes WHERE nombreEstudiante='ChaBED'; --Buscar
