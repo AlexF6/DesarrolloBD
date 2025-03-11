@@ -1,1 +1,74 @@
-# DesarrolloBD
+CREATE DATABASE Prueba2
+
+GO
+USE Prueba2;
+GO
+
+CREATE TABLE Profesores (
+	id_profesor INT IDENTITY PRIMARY KEY,
+	nombreProfesor VARCHAR (30) NOT NULL,
+	emailProfesor VARCHAR (30) UNIQUE NOT NULL
+);
+
+CREATE TABLE Cursos (
+	id_curso INT IDENTITY PRIMARY KEY,
+	nombreCurso VARCHAR (30) NOT NULL
+);
+
+CREATE TABLE Estudiantes (
+	id_estudiante INT IDENTITY PRIMARY KEY,
+	nombreEstudiante VARCHAR (30) NOT NULL
+);
+
+CREATE TABLE Facultades (
+	id_facultad INT IDENTITY PRIMARY KEY,
+	nombreFacultad VARCHAR (30) NOT NULL
+);
+--Creamos la tabla intermedia
+
+--CREATE TABLE CursosIntermedios (
+--	id_profesor INT,
+--	id_estudiante INT,
+--	id_facultad INT,
+--	id_curso INT
+--); 
+
+--CREATE TABLE Inscripciones (
+--	id_estudiante INT,
+--	id_curso INT, 
+--	id_facultad INT,
+--	fechaInscripcion DATE
+--);
+
+--CREATE TABLE AsignacionesCursos (
+--	id_profesor INT,
+--	id_curso INT,
+--	id_facultad INT,
+--	fechaAsignacion DATE
+--);
+
+CREATE TABLE AsignacionesCursos1 (
+	id_profesor INT,
+	id_curso INT,
+	id_facultad INT,
+	fechaAsignacion DATE,
+	PRIMARY KEY(id_profesor, id_curso),
+	FOREIGN KEY(id_profesor) REFERENCES Profesores(id_profesor),
+	FOREIGN KEY (id_facultad) REFERENCES Facultades(id_facultad),
+	FOREIGN KEY (id_curso) REFERENCES Cursos(id_curso),
+);
+
+CREATE TABLE Inscripciones1 (
+	id_estudiante INT,
+	id_curso INT,
+	id_facultad INT,
+	fechaAsignacion DATE,
+	PRIMARY KEY(id_estudiante, id_curso),
+	FOREIGN KEY(id_estudiante) REFERENCES Estudiantes(id_estudiante),
+	FOREIGN KEY (id_facultad) REFERENCES Facultades(id_facultad),
+	FOREIGN KEY (id_curso) REFERENCES Cursos(id_curso),
+);
+
+GO
+ALTER TABLE Profesores
+ADD ApellidoProfesor VARCHAR(30);
